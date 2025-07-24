@@ -1,0 +1,57 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #e94e4e;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  width: 300px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#errorMsg {
+  color: red;
+  margin-top: 10px;
+}
+
+@keyframes cambioColor {
+  0%   { background-color: #ff9999; }
+  25%  { background-color: #99ff99; }
+  50%  { background-color: #9999ff; }
+  75%  { background-color: #ffff99; }
+  100% { background-color: #ffccff; }
+}
+
+body {
+  animation: cambioColor 10s infinite;
+  transition: background-color 2s;
+}
+
+/*estilos de login , unir rutas y llamar*/
