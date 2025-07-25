@@ -1,18 +1,19 @@
-const formLogin = document.getElementById("loginForm")
+const formLogin = document.getElementById("formLogin")
 
+formLogin.addEventListener("submit", function (event){ // captar el evento addevent
 
-formLogin.addEventListener("submit", function (event){
     
     const inputUsername = formLogin.username.value;
     const inputPassword = formLogin.password.value;
-
+    login(inputUsername,inputPassword)
+    
     event.preventDefault()
 })
 
 async function login (inputUsername,inputPassword) { // se encarga de usar el login
-    let response =  await fetch(`http://localhost:3000/users?username=${inputUsername}`,)
-    let data = response.json()
-    console.log(data)
+    let response =  await fetch(`http://localhost:3000/users?username=${inputUsername}`)
+    let data =  await response.json()
+
     if (data.length === 0){
         alert("credenciales incorrectas , revisa el usuario o la contraseña")
     }else{
@@ -21,8 +22,9 @@ async function login (inputUsername,inputPassword) { // se encarga de usar el lo
         if(userFound.password === inputPassword){
 
             localStorage.setItem("currentUser", JSON.stringify(userFound)) // el local storage la llave
-            window.location.href ="dasboard.html"
+            window.location.href ="dashboard.html"
             alert("login correcto")
+
         }else{
             alert("credenciales incorrectas , revisa el usuario o la contraseña")
         }

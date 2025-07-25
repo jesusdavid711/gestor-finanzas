@@ -1,5 +1,8 @@
-const btnLogout = document.getElementById("el name del boton")
+const btnLogout = document.getElementById("logout-btn")
 
 btnLogout.addEventListener("click", function(){
-    localStorage.removeItem
+
+    localStorage.removeItem("currentUser")
+    window.location.href = "/"
+
 })
