@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right top, #001f3d, #00bfc8);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  color: #ffffff;
+}
+
+.bienvenida-alt {
+  max-width: 1100px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  padding: 2.5rem;
+  transition: 0.4s ease all;
+}
+
+.bienvenida-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* margin-bottom: 2.5rem; */
+}
+
+.bienvenida-hero .icono img {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 1rem;
+}
+
+.bienvenida-hero h1 {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+}
+
+.bienvenida-hero p {
+  font-size: 1rem;
+  max-width: 600px;
+  margin-bottom: 1.2rem;
+  color: #f1f1f1;
+}
+
+
+/* Cards base */
+.caracteristicas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.caracteristica {
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.caracteristica:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Títulos y descripciones */
+.caracteristica h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.caracteristica p {
+  font-size: 0.95rem;
+  color: #e0f7fa;
+}
+
+/* Colores por tipo */
+.caracteristica:nth-child(1) {
+  background: #0077b6a8; /* Categorías - Azul */
+}
+
+.caracteristica:nth-child(2) {
+  background: #2db284b0; /* Movimientos - Verde */
+}
+
+.caracteristica:nth-child(3) {
+  background: #f78fb3b0; /* Reportes - Rosado */
+}
+
+.caracteristica:nth-child(4) {
+  background: #9b59b6a4; /* Usuarios - Lila */
+}
+
+/* Botón de acceso */
+.btn-acceso {
+  margin-top: 1.5rem;
+  background: #ffffff;
+  color: #001f3d;
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.btn-acceso:hover {
+  background: #e0e0e0;
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bienvenida-alt {
+    padding: 1.2rem;
+  }
+
+  .caracteristicas-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-acceso {
+    width: 100%;
+  }
+}
