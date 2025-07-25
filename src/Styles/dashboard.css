@@ -9,10 +9,11 @@ body {
   background: #f3f6fa;
   color: #2c3e50;
   min-height: 100vh;
+
 }
 
 .top-bar {
-  background-color: #394867;
+  background-color: #00bfc8;
   color: white;
   padding: 1.5rem 2rem;
   display: flex;
