@@ -9,10 +9,10 @@ formLogin.addEventListener("submit", function (event){
     event.preventDefault()
 })
 
-async function login (inputUsername,inputPassword) { // se encarga de usar el login 
+async function login (inputUsername,inputPassword) { // se encarga de usar el login
     let response =  await fetch(`http://localhost:3000/users?username=${inputUsername}`,)
     let data = response.json()
-
+    console.log(data)
     if (data.length === 0){
         alert("credenciales incorrectas , revisa el usuario o la contraseña")
     }else{
