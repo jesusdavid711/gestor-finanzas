@@ -1,14 +1,20 @@
 {
-    "users":[
+    "users": [
         {
-        "id": "001",
-        "username": "admin",
-        "password": "1234"
+            "id": "001",
+            "username": "admin",
+            "password": "1234"
         },
         {
-        "id": "h14",
-        "username": "pepito",
-        "password": "pepito123"
+            "id": "h14",
+            "username": "pepito",
+            "password": "pepito123"
+        }
+    ],
+    "categorias":[
+        {
+            
         }
     ]
+    
 }
