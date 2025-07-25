@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f3f6fa;
+  color: #2c3e50;
+  min-height: 100vh;
+}
+
+.top-bar {
+  background-color: #394867;
+  color: white;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-bar h1 {
+  font-size: 1.5rem;
+}
+
+.logout-btn {
+  background-color: #dc3545;
+  color: white;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #b52a38;
+}
+
+.panel-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  padding: 2.5rem 1rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+.option-card {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.option-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.option-card .icon {
+  font-size: 2rem;
+  margin-right: 1.2rem;
+  color: #394867;
+}
+
+.option-card h2 {
+  margin-bottom: 0.3rem;
+  font-size: 1.3rem;
+  color: #2c3e50;
+}
+
+.option-card p {
+  color: #6c757d;
+  font-size: 0.95rem;
+}
+
+.movimientos {
+  border-left: 8px solid #4caf50;
+  background-color: #e9fbe9;
+}
+
+.categorias {
+  border-left: 8px solid #007bff;
+  background-color: #e7f1ff;
+}
+
+.reportes {
+  border-left: 8px solid #ffc107;
+  background-color: #fffbe6;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Usuario</title>
+  <link rel="stylesheet" href="../Styles/dashboard.css" />
+  <!-- <script type="module" src="../js/guardian.js"></script> -->
+</head>
+<body>
+  <header class="top-bar">
+    <h1>👤 Bienvenido al Panel</h1>
+    <button id="logout-btn" class="logout-btn" onclick="location.href='login.html'">Cerrar sesión</button>
+  </header>
+
+  <main class="panel-grid">
+    <div class="option-card movimientos" onclick="location.href='movimientos.html'">
+      <span class="icon">📊</span>
+      <div class="info">
+        <h2>Movimientos</h2>
+        <p>Compras y ventas</p>
+      </div>
+    </div>
+
+    <div class="option-card categorias" onclick="location.href='categorias.html'">
+      <span class="icon">📂</span>
+      <div class="info">
+        <h2>Categorías</h2>
+        <p>Organiza tus productos</p>
+      </div>
+    </div>
+
+    <div class="option-card reportes" onclick="location.href='reportes.html'">
+      <span class="icon">📈</span>
+      <div class="info">
+        <h2>Reportes</h2>
+        <p>Análisis y estadísticas</p>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="../js/dashboard.js"></script>
+</body>
+</html>
