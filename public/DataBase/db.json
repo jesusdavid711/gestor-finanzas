@@ -1,20 +1,28 @@
 {
-    "users": [
-        {
-            "id": "001",
-            "username": "admin",
-            "password": "1234"
-        },
-        {
-            "id": "h14",
-            "username": "pepito",
-            "password": "pepito123"
-        }
-    ],
-    "categorias":[
-        {
-            
-        }
-    ]
-    
+  "users": [
+    {
+      "id": "001",
+      "username": "admin",
+      "password": "1234"
+    },
+    {
+      "id": "h14",
+      "username": "pepito",
+      "password": "pepito123"
+    }
+  ],
+  "categories": [
+    {
+      "id": "d30a",
+      "nombre": "emergencia"
+    },
+    {
+      "id": "7181",
+      "nombre": "gustos"
+    },
+    {
+      "nombre": "obligato",
+      "id": "cdef"
+    }
+  ]
 }
