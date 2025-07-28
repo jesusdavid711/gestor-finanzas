@@ -93,22 +93,33 @@
       "importe": "90000",
       "fecha": "2025-07-18",
       "categoryId": "7181"
-    },
-    {
-      "id": "5e92",
-      "tipo": "compra",
-      "descripcion": "tuve que hacer el mercado",
-      "importe": "60000",
-      "fecha": "2025-07-12",
-      "categoryId": "cdef"
-    },
-    {
-      "id": "f3ad",
-      "tipo": "compra",
-      "descripcion": "adfsfsf",
-      "importe": "234243",
-      "fecha": "2025-07-25",
-      "categoryId": "f496"
     }
-  ]
+  ],
+   "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
 }

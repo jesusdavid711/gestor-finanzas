@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reportes</title>
+    <link rel="stylesheet" href="../css/reportes.css" />
+    <script type="module" src="../js/guardian.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <h1>Reportes y Análisis</h1>
+        <button id="volver-dashboard" class="btn-volver" onclick="location.href='./dashboard.html'">Volver al Dashboard</button>
+    </header>
+
+    <main class="reportes-container">
+        <!-- Resumen general -->
+        <section class="resumen">
+            <h2>Resumen General</h2>
+            <div class="resumen-grid">
+                <div class="reporte-box">
+                    <h3>🔝 Categoría más vendida</h3>
+                    <p id="cat-mas-vendida">-</p>
+                </div>
+                <div class="reporte-box">
+                    <h3>🔽 Categoría con más compras</h3>
+                    <p id="cat-mas-comprada">-</p>
+                </div>
+                <div class="reporte-box">
+                    <h3>📦 Producto más vendido</h3>
+                    <p id="prod-mas-vendido">-</p>
+                </div>
+                <div class="reporte-box">
+                    <h3>🛒 Producto más comprado</h3>
+                    <p id="prod-mas-comprado">-</p>
+                </div>
+                <div class="reporte-box">
+                    <h3>📈 Mes con más ventas</h3>
+                    <p id="mes-mas-ventas">-</p>
+                </div>
+                <div class="reporte-box">
+                    <h3>📉 Mes con más compras</h3>
+                    <p id="mes-mas-compras">-</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Totales agrupados -->
+        <section class="totales">
+            <h2>Totales por Categoría</h2>
+            <div id="totales-categoria" class="tabla-container">
+                <!-- Tabla dinámica desde JS -->
+            </div>
+
+            <h2>Totales por Mes</h2>
+            <div id="totales-mes" class="tabla-container">
+                <!-- Tabla dinámica desde JS -->
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
