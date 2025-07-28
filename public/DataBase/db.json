@@ -11,7 +11,16 @@
       "password": "pepito123"
     }
   ],
-  "categories": [],
+  "categories": [
+    {
+      "id": "f496",
+      "nombre": "electrodomestico"
+    },
+    {
+      "id": "32f2",
+      "nombre": "carroceria"
+    }
+  ],
   "movimientos": [
     {
       "id": "566d",
