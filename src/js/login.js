@@ -5,6 +5,7 @@ formLogin.addEventListener("submit", function (event){ // captar el evento addev
     
     const inputUsername = formLogin.username.value;
     const inputPassword = formLogin.password.value;
+
     login(inputUsername,inputPassword)
     
     event.preventDefault()
@@ -22,8 +23,9 @@ async function login (inputUsername,inputPassword) { // se encarga de usar el lo
         if(userFound.password === inputPassword){
 
             localStorage.setItem("currentUser", JSON.stringify(userFound)) // el local storage la llave
-            window.location.href ="dashboard.html"
             alert("login correcto")
+            window.location.href ="dashboard.html"
+            
 
         }else{
             alert("credenciales incorrectas , revisa el usuario o la contraseña")

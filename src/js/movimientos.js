@@ -1,21 +1,19 @@
 //CRUD
-let endpointCategories = "http://localhost:3000/categories"
-let endpointMovimientos = "http://localhost:3000/movimientos"
-
+let endpointCategories = "http://localhost:3000/categories";
+let endpointMovimientos = "http://localhost:3000/movimientos";
 
 // crear un nuevo movimiento:
-const formMovimientos = document.getElementById("form-movimiento")
-const tbodyMovimientos = document.getElementById("tbody-movimientos")
-let selectCategorias = formMovimientos.categoria
+const formMovimientos = document.getElementById("form-movimiento");
+const tbodyMovimientos = document.getElementById("tbody-movimientos");
+let selectCategorias = formMovimientos.categoria;
 
 document.addEventListener("DOMContentLoaded", function () {
-    pintarCategorias()
-    pintarMovimientos()
-})
-
+    pintarCategorias();
+    pintarMovimientos();
+});
 
 formMovimientos.addEventListener("submit", function (event) {
-    event.preventDefault()
+    event.preventDefault();
 
     const newMovimiento = {
         tipo: formMovimientos.tipo.value,
@@ -23,39 +21,36 @@ formMovimientos.addEventListener("submit", function (event) {
         importe: formMovimientos.importe.value,
         fecha: formMovimientos.fecha.value,
         categoryId: formMovimientos.categoria.value,
-    }
+    };
 
-    crearUnNuevoMovimiento(newMovimiento)
-    formMovimientos.reset()
-})
-
+    crearUnNuevoMovimiento(newMovimiento);
+    formMovimientos.reset();
+});
 
 // pintarCategorias
 async function pintarCategorias() {
-    selectCategorias.innerHTML = ""
+    selectCategorias.innerHTML = "";
 
-    let response = await fetch(endpointCategories)
-    let data = await response.json()
+    let response = await fetch(endpointCategories);
+    let data = await response.json();
 
     if (data.length === 0) {
         selectCategorias.innerHTML += `
             <option disabled>Sin Categorias, por favor registre almenos una</option>
-        `
+        `;
     }
 
-    data.forEach(categoria => {
+    data.forEach((categoria) => {
         selectCategorias.innerHTML += `
             <option value="${categoria.id}">${categoria.nombre}</option>
-        `
+        `;
     });
-
 }
-
-
+//pintar los moviminetos en la tabla
 async function pintarMovimientos() {
-    let movimientos = await traerMovimientos()
+    let movimientos = await traerMovimientos();
 
-    tbodyMovimientos.innerHTML=""
+    tbodyMovimientos.innerHTML = "";
 
     for (const movimiento of movimientos) {
         tbodyMovimientos.innerHTML += `
@@ -64,39 +59,41 @@ async function pintarMovimientos() {
             <td>${movimiento.descripcion}</td>
             <td>${movimiento.importe}</td>
             <td>${movimiento.fecha}</td>
-            <td>${movimiento.category}</td>
+            <td>${movimiento.category === undefined ? "la categoria fue eliminadad" : movimiento.category.nombre
+            }
+            </td>
             <td>
-              <button class="btn-editar" data-id="${movimiento.id}">Editar</button>
-              <button class="btn-eliminar" data-id="${movimiento.id}">Eliminar</button>
+            <button class="btn-editar" data-id="${movimiento.id
+            }">Editar</button>
+            <button class="btn-eliminar" data-id="${movimiento.id
+            }">Eliminar</button>
             </td>
         </tr>
-        `
+        `;
     }
-
 }
 
 // crear un nuevo movimiento
 async function crearUnNuevoMovimiento(newMovimiento) {
-
     let response = await fetch(endpointMovimientos, {
         method: "POST",
         headers: {
-            "content-type": "application/json"
+            "content-type": "application/json",
         },
-        body: JSON.stringify(newMovimiento)
-    })
+        body: JSON.stringify(newMovimiento),
+    });
 
     if (response.ok) {
-        alert("movimiento guardado con exito")
+        alert("movimiento guardado con exito");
     }
 
-    pintarMovimientos()
+    pintarMovimientos();
 }
 
 // traer llamar a los movimiento de la base de datos
 async function traerMovimientos() {
-    let response = await fetch(`${endpointMovimientos}?_embed=category`)
-    let data = await response.json()
+    let response = await fetch(`${endpointMovimientos}?_embed=category`);
+    let data = await response.json();
 
-    return data
+    return data;
 }

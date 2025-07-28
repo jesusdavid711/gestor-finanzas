@@ -11,16 +11,7 @@
       "password": "pepito123"
     }
   ],
-  "categories": [
-    {
-      "id": "f496",
-      "nombre": "electrodomestico"
-    },
-    {
-      "id": "32f2",
-      "nombre": "carroceria"
-    }
-  ],
+  "categories": [],
   "movimientos": [
     {
       "id": "566d",
@@ -93,33 +84,15 @@
       "importe": "90000",
       "fecha": "2025-07-18",
       "categoryId": "7181"
-    }
-  ],
-   "posts": [
-    {
-      "id": "1",
-      "title": "a title",
-      "views": 100
     },
     {
-      "id": "2",
-      "title": "another title",
-      "views": 200
+      "id": "2a1c",
+      "tipo": "compra",
+      "descripcion": "adasd",
+      "importe": "23424",
+      "fecha": "2025-07-10",
+      "categoryId": null
     }
-  ],
-  "comments": [
-    {
-      "id": "1",
-      "text": "a comment about post 1",
-      "postId": "1"
-    },
-    {
-      "id": "2",
-      "text": "another comment about post 1",
-      "postId": "1"
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
+  
 }

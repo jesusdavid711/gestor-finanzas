@@ -1,13 +1,14 @@
-
-
+// creo  nuevas variables , el form que contiene todo
+// donde voy a guardar el nombre de cada categoria
+// se crea otra varible  para en donde se va a insertar  en la lista 
 const formCategoria = document.getElementById("form-categoria");
 const inputNombre = document.getElementById("nombre-categoria");
 const listaCategorias = document.getElementById("lista-categorias"); //el get es para trar unir al html por los id
-
+//se crea  otra variable  para guardar la base de datos de categories
 const API_URL = "http://localhost:3000/categories";
 
 
-
+//me imagino que seria que para que quede vacio y despues 
 let categoriaEditando = null ;// ID si estamos en modo edición
 
 document.addEventListener('DOMContentLoaded', cargarCategorias); //casptura la pagina al momento de la funcion se inserte
@@ -46,6 +47,7 @@ formCategoria.addEventListener('submit', async (e) => {
   try {
     if (categoriaEditando) {
       // Actualizar
+      await fetch("http://localhost:3000/categories/941e")
       await fetch(`${API_URL}/${categoriaEditando}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
