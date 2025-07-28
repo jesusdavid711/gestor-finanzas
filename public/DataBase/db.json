@@ -13,16 +13,102 @@
   ],
   "categories": [
     {
-      "id": "d30a",
-      "nombre": "emergencia"
+      "id": "f496",
+      "nombre": "electrodomestico"
     },
     {
-      "id": "7181",
-      "nombre": "gustos"
+      "id": "32f2",
+      "nombre": "carroceria"
+    }
+  ],
+  "movimientos": [
+    {
+      "id": "566d",
+      "tipo": "compra",
+      "descripcion": "tuve que hacer el mercado",
+      "importe": "6000",
+      "fecha": "2025-07-24",
+      "categoryId": "cdef"
     },
     {
-      "nombre": "obligato",
-      "id": "cdef"
+      "id": "8ab0",
+      "tipo": "venta",
+      "descripcion": "vendi mi acciones de apple",
+      "importe": "9000000",
+      "fecha": "2025-07-23",
+      "categoryId": "d30a"
+    },
+    {
+      "id": "1dc4",
+      "tipo": "venta",
+      "descripcion": "vendi el carro",
+      "importe": "30000000",
+      "fecha": "2025-06-06",
+      "categoryId": "7181"
+    },
+    {
+      "id": "63bc",
+      "tipo": "compra",
+      "descripcion": "test",
+      "importe": "90000",
+      "fecha": "2025-07-18",
+      "categoryId": "7181"
+    },
+    {
+      "id": "5e92",
+      "tipo": "compra",
+      "descripcion": "tuve que hacer el mercado",
+      "importe": "60000",
+      "fecha": "2025-07-12",
+      "categoryId": "cdef"
+    },
+    {
+      "id": "566d",
+      "tipo": "compra",
+      "descripcion": "tuve que hacer el mercado",
+      "importe": "6000",
+      "fecha": "2025-07-24",
+      "categoryId": "cdef"
+    },
+    {
+      "id": "8ab0",
+      "tipo": "venta",
+      "descripcion": "vendi mi acciones de apple",
+      "importe": "9000000",
+      "fecha": "2025-07-23",
+      "categoryId": "d30a"
+    },
+    {
+      "id": "1dc4",
+      "tipo": "venta",
+      "descripcion": "vendi el carro",
+      "importe": "30000000",
+      "fecha": "2025-06-06",
+      "categoryId": "7181"
+    },
+    {
+      "id": "63bc",
+      "tipo": "compra",
+      "descripcion": "test",
+      "importe": "90000",
+      "fecha": "2025-07-18",
+      "categoryId": "7181"
+    },
+    {
+      "id": "5e92",
+      "tipo": "compra",
+      "descripcion": "tuve que hacer el mercado",
+      "importe": "60000",
+      "fecha": "2025-07-12",
+      "categoryId": "cdef"
+    },
+    {
+      "id": "f3ad",
+      "tipo": "compra",
+      "descripcion": "adfsfsf",
+      "importe": "234243",
+      "fecha": "2025-07-25",
+      "categoryId": "f496"
     }
   ]
 }
