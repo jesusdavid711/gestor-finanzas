@@ -45,6 +45,31 @@
       "importe": 234234,
       "fecha": "2025-07-16",
       "categoryId": "eaee"
+    },
+    {
+      "id": "0240",
+      "tipo": "gasto",
+      "descripcion": "sdfsdf",
+      "importe": 23423,
+      "fecha": "2025-07-17",
+      "categoryId": "a091"
+    },
+    {
+      "id": "5154",
+      "tipo": "ganancia",
+      "descripcion": "edasd",
+      "importe": 3.4e+235,
+      "fecha": "2025-07-14",
+      "categoryId": "8386"
+    }
+  ],
+  "reportes": [
+    {
+      "id": "r001",
+      "tipo": "top-categorias",
+      "categoria": "electrodomesticos",
+      "importe": 123123,
+      "fecha": "2025-07"
     }
   ]
 }
