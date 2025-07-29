@@ -13,10 +13,6 @@
   ],
   "categories": [
     {
-      "id": "f496",
-      "nombre": "electrodomestico"
-    },
-    {
       "id": "32f2",
       "nombre": "carroceria"
     },
@@ -35,11 +31,15 @@
     {
       "id": "0114",
       "nombre": "plays"
+    },
+    {
+      "id": "64bf",
+      "nombre": "jesus david castro"
     }
   ],
   "movimientos": [
     {
-      "tipo": "compra",
+      "tipo": "gasto",
       "descripcion": "wefwef",
       "importe": 4234234,
       "fecha": "2025-07-11",
@@ -47,16 +47,8 @@
       "id": "7878"
     },
     {
-      "id": "9574",
-      "tipo": "compra",
-      "descripcion": "adasd",
-      "importe": 23424,
-      "fecha": "3443-02-24",
-      "categoryId": "f496"
-    },
-    {
       "id": "d9ac",
-      "tipo": "venta",
+      "tipo": "ganancia",
       "descripcion": "wdadsad",
       "importe": 123131312,
       "fecha": "2025-07-10",
@@ -64,7 +56,7 @@
     },
     {
       "id": "e727",
-      "tipo": "venta",
+      "tipo": "ganancia",
       "descripcion": "adadad",
       "importe": 123123,
       "fecha": "2025-07-10",
@@ -72,11 +64,27 @@
     },
     {
       "id": "ff38",
-      "tipo": "compra",
+      "tipo": "gasto",
       "descripcion": "awdad",
       "importe": 2313,
       "fecha": "2025-07-04",
       "categoryId": "0114"
+    },
+    {
+      "id": "888a",
+      "tipo": "gasto",
+      "descripcion": "asdadad",
+      "importe": 234234,
+      "fecha": "2021-02-23",
+      "categoryId": "eaee"
+    },
+    {
+      "id": "0570",
+      "tipo": "gasto",
+      "descripcion": "asdads",
+      "importe": 3234,
+      "fecha": "2202-03-12",
+      "categoryId": "32f2"
     }
   ]
 }

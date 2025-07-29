@@ -63,8 +63,10 @@ h2 {
   font-size: 1.5rem;
 }
 
+/* 💫 Ajuste para campos dentro de grupos flexibles */
 .form-group {
-  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 label {
@@ -73,13 +75,15 @@ label {
   margin-bottom: 0.4rem;
   color: #333;
 }
-
+/* 🔧 Normaliza ancho y estilo de campos */
 input, select {
   width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
   padding: 0.7rem;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 1rem;
+  appearance: none; /* Elimina estilos extra del sistema */
 }
 
 .btn-guardar {
@@ -161,4 +165,97 @@ td .btn-editar {
 td .btn-eliminar {
   background-color: #dc3545;
   color: white;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  .header-title h1 {
+    font-size: 1.5rem;
+  }
+
+  .header-title p {
+    font-size: 0.85rem;
+  }
+
+  .main-container {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .form-section,
+  .tabla-section {
+    flex: 1 1 auto;
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .filtros {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  input, select, .btn-guardar, .btn-volver, #btn-limpiar-filtros {
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  td button {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.3rem;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  th, td {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-title h1 {
+    font-size: 1.3rem;
+  }
+
+  .header-title p {
+    font-size: 0.8rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  label {
+    font-size: 0.85rem;
+  }
+
+  input, select {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .btn-guardar, .btn-volver, #btn-limpiar-filtros {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+
+  td button {
+    font-size: 0.8rem;
+    padding: 0.3rem;
+  }
 }

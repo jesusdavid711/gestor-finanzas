@@ -1,8 +1,8 @@
-// Definimos los endpoints de la API local para obtener datos de categorías y movimientos
+// 🌐 Endpoints de tus APIs locales
 let endpointCategories = "http://localhost:3000/categories";
 let endpointMovimientos = "http://localhost:3000/movimientos";
 
-// Seleccionamos los elementos HTML donde mostraremos los reportes
+// 🎯 Elementos del DOM donde mostraremos los datos
 const categoriaMasVendida = document.getElementById("categoria-mas-vendida");
 const categoriaMasComprada = document.getElementById("categoria-mas-compras");
 const productoMasVendido = document.getElementById("producto-mas-vendido");
@@ -12,214 +12,209 @@ const mesMasCompras = document.getElementById("mes-mas-compra");
 const tablaTotalesCategoria = document.getElementById("totales-categoria");
 const tablaTotalesMes = document.getElementById("totales-mes");
 
-// Cuando la página carga completamente, ejecutamos las funciones de reportes
+// 🚀 Cuando la página carga, obtenemos datos y pintamos reportes
 document.addEventListener("DOMContentLoaded", async () => {
-    const movimientos = await obtener(endpointMovimientos);
-    const categorias = await obtener(endpointCategories);
+  const movimientos = await obtener(endpointMovimientos);
+  const categorias = await obtener(endpointCategories);
 
-    pintarCategoriaMasVendida(movimientos, categorias);
-    pintarCategoriaMasComprada(movimientos, categorias);
-    pintarProductoMasVendido(movimientos);
-    pintarProductoMasComprado(movimientos);
-    pintarMesMasVentas(movimientos);
-    pintarMesMasCompras(movimientos);
-    pintarTablaTotalesPorCategoria(movimientos, categorias);
-    pintarTablaTotalesPorMes(movimientos);
+  pintarCategoriaMasGanancia(movimientos, categorias);
+  pintarCategoriaMasGasto(movimientos, categorias);
+  pintarDescripcionMasGanancia(movimientos);
+  pintarDescripcionMasGasto(movimientos);
+  pintarMesMayorGanancia(movimientos);
+  pintarMesMayorGasto(movimientos);
+  pintarTablaTotalesPorCategoria(movimientos, categorias);
+  pintarTablaTotalesPorMes(movimientos);
 });
 
-// Función reutilizable para hacer peticiones GET y obtener datos JSON
+// 🔄 Función para hacer fetch GET y convertir a JSON
 async function obtener(endpoint) {
-    const response = await fetch(endpoint);
-    return await response.json();
+  const res = await fetch(endpoint);
+  return await res.json();
 }
 
-// Mostrar la categoría con mayor importe de ventas
-function pintarCategoriaMasVendida(movs, categorias) {
-    // Filtramos los movimientos que sean ventas
-    const ventas = movs.filter(m => m.tipo === "venta");
-    // Agrupamos por ID de categoría y sumamos importes
-    const totales = agruparPor(ventas, "categoryId", "importe");
-
-    // Buscamos la categoría con mayor total
-    const idMax = obtenerIdConMayorValor(totales);
-    const categoria = categorias.find(cat => cat.id === idMax);
-
-    // Mostramos el nombre de la categoría (o "-" si no se encuentra)
-    categoriaMasVendida.textContent = categoria ? categoria.nombre : "-";
+// 📊 1. Categoría con mayor ganancia acumulada
+function pintarCategoriaMasGanancia(movs, categorias) {
+  const ganancias = movs.filter(m => m.tipo === "ganancia");
+  const totales = agruparPor(ganancias, "categoryId", "importe");
+  const idMax = obtenerIdConMayorValor(totales);
+  const categoria = categorias.find(cat => cat.id === idMax);
+  categoriaMasVendida.textContent = categoria ? categoria.nombre : "-";
 }
 
-// Mostrar la categoría con mayor importe de compras
-function pintarCategoriaMasComprada(movs, categorias) {
-    const compras = movs.filter(m => m.tipo === "compra");
-    const totales = agruparPor(compras, "categoryId", "importe");
-
-    const idMax = obtenerIdConMayorValor(totales);
-    const categoria = categorias.find(cat => cat.id === idMax);
-
-    categoriaMasComprada.textContent = categoria ? categoria.nombre : "-";
+// 📉 2. Categoría con mayor gasto acumulado
+function pintarCategoriaMasGasto(movs, categorias) {
+  const gastos = movs.filter(m => m.tipo === "gasto");
+  const totales = agruparPor(gastos, "categoryId", "importe");
+  const idMax = obtenerIdConMayorValor(totales);
+  const categoria = categorias.find(cat => cat.id === idMax);
+  categoriaMasComprada.textContent = categoria ? categoria.nombre : "-";
 }
 
-// Mostrar el producto (descripción) más vendido por mayor importe
-function pintarProductoMasVendido(movs) {
-    const ventas = movs.filter(m => m.tipo === "venta");
-    const totales = agruparPor(ventas, "descripcion", "importe");
-
-    const descripcionMax = obtenerIdConMayorValor(totales);
-    productoMasVendido.textContent = descripcionMax || "-";
+// 📦 3. Descripción (producto) con mayor ganancia
+function pintarDescripcionMasGanancia(movs) {
+  const ganancias = movs.filter(m => m.tipo === "ganancia");
+  const totales = agruparPor(ganancias, "descripcion", "importe");
+  const descripcionMax = obtenerIdConMayorValor(totales);
+  productoMasVendido.textContent = descripcionMax || "-";
 }
 
-// Mostrar el producto (descripción) más comprado por mayor importe
-function pintarProductoMasComprado(movs) {
-    const compras = movs.filter(m => m.tipo === "compra");
-    const totales = agruparPor(compras, "descripcion", "importe");
-
-    const descripcionMax = obtenerIdConMayorValor(totales);
-    productoMasComprado.textContent = descripcionMax || "-";
+// 🛒 4. Descripción (producto) con mayor gasto
+function pintarDescripcionMasGasto(movs) {
+  const gastos = movs.filter(m => m.tipo === "gasto");
+  const totales = agruparPor(gastos, "descripcion", "importe");
+  const descripcionMax = obtenerIdConMayorValor(totales);
+  productoMasComprado.textContent = descripcionMax || "-";
 }
 
-// Mostrar el mes con mayor suma de ventas
-function pintarMesMasVentas(movs) {
-    const ventas = movs.filter(m => m.tipo === "venta");
-    const totales = agruparPor(ventas, "mes", "importe");
-
-    const mesMax = obtenerIdConMayorValor(totales);
-    mesMasVentas.textContent = mesMax || "-";
+// 📅 5. Mes con mayor ganancia total
+function pintarMesMayorGanancia(movs) {
+  const ganancias = movs.filter(m => m.tipo === "ganancia");
+  const totales = agruparPor(ganancias, "mes", "importe");
+  const mesMax = obtenerIdConMayorValor(totales);
+  mesMasVentas.textContent = mesMax || "-";
 }
 
-// Mostrar el mes con mayor suma de compras
-function pintarMesMasCompras(movs) {
-    const compras = movs.filter(m => m.tipo === "compra");
-    const totales = agruparPor(compras, "mes", "importe");
-
-    const mesMax = obtenerIdConMayorValor(totales);
-    mesMasCompras.textContent = mesMax || "-";
+// 📅 6. Mes con mayor gasto total
+function pintarMesMayorGasto(movs) {
+  const gastos = movs.filter(m => m.tipo === "gasto");
+  const totales = agruparPor(gastos, "mes", "importe");
+  const mesMax = obtenerIdConMayorValor(totales);
+  mesMasCompras.textContent = mesMax || "-";
 }
 
-// Pintar tabla con totales por categoría (ventas y compras)
+// 📊 7. Tabla: Totales agrupados por categoría
 function pintarTablaTotalesPorCategoria(movs, categorias) {
-    // Agrupamos todos los movimientos por categoría
-    const resumen = {};
+  const resumen = {};
 
-    movs.forEach(m => {
-        if (!m.categoryId) return;
-
-        if (!resumen[m.categoryId]) {
-            resumen[m.categoryId] = { ventas: 0, compras: 0 };
-        }
-
-        if (m.tipo === "venta") {
-            resumen[m.categoryId].ventas += Number(m.importe);
-        } else if (m.tipo === "compra") {
-            resumen[m.categoryId].compras += Number(m.importe);
-        }
-    });
-
-    // Construimos tabla HTML
-    let html = `
-        <table>
-            <thead>
-                <tr>
-                    <th>Categoría</th>
-                    <th>Total Ventas</th>
-                    <th>Total Compras</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
-    for (let id in resumen) {
-        const categoria = categorias.find(cat => cat.id === id);
-        const nombre = categoria ? categoria.nombre : "(Eliminada)";
-        html += `
-            <tr>
-                <td>${nombre}</td>
-                <td>$${resumen[id].ventas}</td>
-                <td>$${resumen[id].compras}</td>
-            </tr>
-        `;
+  // Agrupamos movimientos por categoría y tipo
+  movs.forEach(m => {
+    if (!m.categoryId) return;
+    if (!resumen[m.categoryId]) {
+      resumen[m.categoryId] = { ganancia: 0, gasto: 0 };
     }
+    if (m.tipo === "ganancia") {
+      resumen[m.categoryId].ganancia += Number(m.importe);
+    } else if (m.tipo === "gasto") {
+      resumen[m.categoryId].gasto += Number(m.importe);
+    }
+  });
 
-    html += "</tbody></table>";
-    tablaTotalesCategoria.innerHTML = html;
+  // Construimos la tabla HTML
+  let html = `
+    <table>
+      <thead>
+        <tr>
+          <th>Categoría</th>
+          <th>Total Ganancia</th>
+          <th>Total Gasto</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  for (let id in resumen) {
+    const categoria = categorias.find(cat => cat.id === id);
+    const nombre = categoria ? categoria.nombre : "(Eliminada)";
+    const g = resumen[id];
+    const balance = g.ganancia - g.gasto;
+
+    html += `
+      <tr>
+        <td>${nombre}</td>
+        <td>$${g.ganancia}</td>
+        <td>$${g.gasto}</td>
+        <td>$${balance}</td>
+      </tr>
+    `;
+  }
+
+  html += "</tbody></table>";
+  tablaTotalesCategoria.innerHTML = html;
 }
 
-// Pintar tabla con totales por mes (ventas y compras)
+// 📅 8. Tabla: Totales agrupados por mes
 function pintarTablaTotalesPorMes(movs) {
-    // Agrupamos por mes y tipo
-    const resumen = {};
+  const resumen = {};
 
-    movs.forEach(m => {
-        const mes = m.fecha.slice(0, 7); // "2025-07"
-        if (!resumen[mes]) {
-            resumen[mes] = { ventas: 0, compras: 0 };
-        }
+  // Agrupamos movimientos por mes y tipo
+  movs.forEach(m => {
+    const mes = m.fecha.slice(0, 7); // "YYYY-MM"
+    if (!resumen[mes]) {
+      resumen[mes] = { ganancia: 0, gasto: 0 };
+    }
+    if (m.tipo === "ganancia") {
+      resumen[mes].ganancia += Number(m.importe);
+    } else if (m.tipo === "gasto") {
+      resumen[mes].gasto += Number(m.importe);
+    }
+  });
 
-        if (m.tipo === "venta") {
-            resumen[mes].ventas += Number(m.importe);
-        } else if (m.tipo === "compra") {
-            resumen[mes].compras += Number(m.importe);
-        }
-    });
+  // Construimos tabla HTML
+  let html = `
+    <table>
+      <thead>
+        <tr>
+          <th>Mes</th>
+          <th>Total Ganancia</th>
+          <th>Total Gasto</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
 
-    // Construimos tabla
-    let html = `
-        <table>
-            <thead>
-                <tr>
-                    <th>Mes</th>
-                    <th>Total Ventas</th>
-                    <th>Total Compras</th>
-                </tr>
-            </thead>
-            <tbody>
+  for (let mes in resumen) {
+    const g = resumen[mes];
+    const balance = g.ganancia - g.gasto;
+
+    html += `
+      <tr>
+        <td>${mes}</td>
+        <td>$${g.ganancia}</td>
+        <td>$${g.gasto}</td>
+        <td>$${balance}</td>
+      </tr>
     `;
+  }
 
-    for (let mes in resumen) {
-        html += `
-            <tr>
-                <td>${mes}</td>
-                <td>$${resumen[mes].ventas}</td>
-                <td>$${resumen[mes].compras}</td>
-            </tr>
-        `;
-    }
-
-    html += "</tbody></table>";
-    tablaTotalesMes.innerHTML = html;
+  html += "</tbody></table>";
+  tablaTotalesMes.innerHTML = html;
 }
 
-// Función utilitaria para agrupar elementos por una propiedad y sumar otra
+// 🧮 Agrupa y suma una propiedad numérica por clave (mes, categoría, etc.)
 function agruparPor(arr, propiedad, sumarCampo) {
-    const resultado = {};
+  const resultado = {};
 
-    for (const item of arr) {
-        let clave = propiedad === "mes"
-            ? item.fecha.slice(0, 7) // extrae YYYY-MM si es por mes
-            : item[propiedad];
+  for (const item of arr) {
+    let clave = propiedad === "mes"
+      ? item.fecha.slice(0, 7) // Extrae el "YYYY-MM"
+      : item[propiedad];
 
-        if (!clave) continue;
+    if (!clave) continue;
 
-        if (!resultado[clave]) {
-            resultado[clave] = 0;
-        }
-
-        resultado[clave] += Number(item[sumarCampo]);
+    if (!resultado[clave]) {
+      resultado[clave] = 0;
     }
 
-    return resultado;
+    resultado[clave] += Number(item[sumarCampo]);
+  }
+
+  return resultado;
 }
 
-// Devuelve el ID o clave con el valor más alto
+// 🔍 Devuelve la clave con mayor valor acumulado
 function obtenerIdConMayorValor(obj) {
-    let max = 0;
-    let idMax = null;
+  let max = 0;
+  let idMax = null;
 
-    for (const id in obj) {
-        if (obj[id] > max) {
-            max = obj[id];
-            idMax = id;
-        }
+  for (const id in obj) {
+    if (obj[id] > max) {
+      max = obj[id];
+      idMax = id;
     }
+  }
 
-    return idMax;
+  return idMax;
 }
