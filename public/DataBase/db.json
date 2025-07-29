@@ -39,52 +39,12 @@
   ],
   "movimientos": [
     {
+      "id": "49af",
       "tipo": "gasto",
-      "descripcion": "wefwef",
-      "importe": 4234234,
-      "fecha": "2025-07-11",
-      "categoryId": "32f2",
-      "id": "7878"
-    },
-    {
-      "id": "d9ac",
-      "tipo": "ganancia",
-      "descripcion": "wdadsad",
-      "importe": 123131312,
-      "fecha": "2025-07-10",
-      "categoryId": "32f2"
-    },
-    {
-      "id": "e727",
-      "tipo": "ganancia",
-      "descripcion": "adadad",
-      "importe": 123123,
-      "fecha": "2025-07-10",
-      "categoryId": "32f2"
-    },
-    {
-      "id": "ff38",
-      "tipo": "gasto",
-      "descripcion": "awdad",
-      "importe": 2313,
-      "fecha": "2025-07-04",
-      "categoryId": "0114"
-    },
-    {
-      "id": "888a",
-      "tipo": "gasto",
-      "descripcion": "asdadad",
+      "descripcion": "2434234",
       "importe": 234234,
-      "fecha": "2021-02-23",
+      "fecha": "2025-07-16",
       "categoryId": "eaee"
-    },
-    {
-      "id": "0570",
-      "tipo": "gasto",
-      "descripcion": "asdads",
-      "importe": 3234,
-      "fecha": "2202-03-12",
-      "categoryId": "32f2"
     }
   ]
 }
