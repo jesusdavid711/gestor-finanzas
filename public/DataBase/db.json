@@ -19,89 +19,64 @@
     {
       "id": "32f2",
       "nombre": "carroceria"
+    },
+    {
+      "id": "8386",
+      "nombre": "camiones"
+    },
+    {
+      "id": "eaee",
+      "nombre": "electrodomesticos"
+    },
+    {
+      "id": "a091",
+      "nombre": "comisaria"
+    },
+    {
+      "id": "0114",
+      "nombre": "plays"
     }
   ],
   "movimientos": [
     {
-      "id": "566d",
       "tipo": "compra",
-      "descripcion": "tuve que hacer el mercado",
-      "importe": "6000",
-      "fecha": "2025-07-24",
-      "categoryId": "cdef"
+      "descripcion": "wefwef",
+      "importe": 4234234,
+      "fecha": "2025-07-11",
+      "categoryId": "32f2",
+      "id": "7878"
     },
     {
-      "id": "8ab0",
-      "tipo": "venta",
-      "descripcion": "vendi mi acciones de apple",
-      "importe": "9000000",
-      "fecha": "2025-07-23",
-      "categoryId": "d30a"
-    },
-    {
-      "id": "1dc4",
-      "tipo": "venta",
-      "descripcion": "vendi el carro",
-      "importe": "30000000",
-      "fecha": "2025-06-06",
-      "categoryId": "7181"
-    },
-    {
-      "id": "63bc",
-      "tipo": "compra",
-      "descripcion": "test",
-      "importe": "90000",
-      "fecha": "2025-07-18",
-      "categoryId": "7181"
-    },
-    {
-      "id": "5e92",
-      "tipo": "compra",
-      "descripcion": "tuve que hacer el mercado",
-      "importe": "60000",
-      "fecha": "2025-07-12",
-      "categoryId": "cdef"
-    },
-    {
-      "id": "566d",
-      "tipo": "compra",
-      "descripcion": "tuve que hacer el mercado",
-      "importe": "6000",
-      "fecha": "2025-07-24",
-      "categoryId": "cdef"
-    },
-    {
-      "id": "8ab0",
-      "tipo": "venta",
-      "descripcion": "vendi mi acciones de apple",
-      "importe": "9000000",
-      "fecha": "2025-07-23",
-      "categoryId": "d30a"
-    },
-    {
-      "id": "1dc4",
-      "tipo": "venta",
-      "descripcion": "vendi el carro",
-      "importe": "30000000",
-      "fecha": "2025-06-06",
-      "categoryId": "7181"
-    },
-    {
-      "id": "63bc",
-      "tipo": "compra",
-      "descripcion": "test",
-      "importe": "90000",
-      "fecha": "2025-07-18",
-      "categoryId": "7181"
-    },
-    {
-      "id": "2a1c",
+      "id": "9574",
       "tipo": "compra",
       "descripcion": "adasd",
-      "importe": "23424",
+      "importe": 23424,
+      "fecha": "3443-02-24",
+      "categoryId": "f496"
+    },
+    {
+      "id": "d9ac",
+      "tipo": "venta",
+      "descripcion": "wdadsad",
+      "importe": 123131312,
       "fecha": "2025-07-10",
-      "categoryId": null
+      "categoryId": "32f2"
+    },
+    {
+      "id": "e727",
+      "tipo": "venta",
+      "descripcion": "adadad",
+      "importe": 123123,
+      "fecha": "2025-07-10",
+      "categoryId": "32f2"
+    },
+    {
+      "id": "ff38",
+      "tipo": "compra",
+      "descripcion": "awdad",
+      "importe": 2313,
+      "fecha": "2025-07-04",
+      "categoryId": "0114"
     }
   ]
-  
 }

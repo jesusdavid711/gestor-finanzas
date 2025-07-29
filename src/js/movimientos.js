@@ -1,99 +1,191 @@
-//CRUD
+// URLs de las APIs de json-server
 let endpointCategories = "http://localhost:3000/categories";
 let endpointMovimientos = "http://localhost:3000/movimientos";
 
-// crear un nuevo movimiento:
+// Referencias al formulario y a la tabla
 const formMovimientos = document.getElementById("form-movimiento");
 const tbodyMovimientos = document.getElementById("tbody-movimientos");
-let selectCategorias = formMovimientos.categoria;
+const selectCategorias = formMovimientos.categoria;
 
-document.addEventListener("DOMContentLoaded", function () {
-    pintarCategorias();
-    pintarMovimientos();
+// Referencias a los filtros
+const filtroTipo = document.getElementById("filtro-tipo");
+const filtroCategoria = document.getElementById("filtro-categoria");
+const filtroFechaInicio = document.getElementById("filtro-fecha-inicio");
+const filtroFechaFin = document.getElementById("filtro-fecha-fin");
+const btnLimpiarFiltros = document.getElementById("btn-limpiar-filtros");
+
+// Ejecutar funciones al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+    pintarCategorias(); // Cargar categorías
+    pintarMovimientos(); // Mostrar movimientos
 });
 
-formMovimientos.addEventListener("submit", function (event) {
-    event.preventDefault();
+// Manejo del envío del formulario
+formMovimientos.addEventListener("submit", async function (event) {
+    event.preventDefault(); // Evita recargar la página
 
-    const newMovimiento = {
+    // Obtener valores del formulario
+    const movimiento = {
         tipo: formMovimientos.tipo.value,
         descripcion: formMovimientos.descripcion.value,
-        importe: formMovimientos.importe.value,
+        importe: Number(formMovimientos.importe.value),
         fecha: formMovimientos.fecha.value,
         categoryId: formMovimientos.categoria.value,
     };
 
-    crearUnNuevoMovimiento(newMovimiento);
+    // Verificar si es edición
+    const idAEditar = formMovimientos.getAttribute("data-edit-id");
+
+    if (idAEditar) {
+        // Editar movimiento existente
+        await fetch(`${endpointMovimientos}/${idAEditar}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(movimiento),
+        });
+        alert("Movimiento actualizado correctamente");
+        formMovimientos.removeAttribute("data-edit-id");
+        formMovimientos.querySelector("button[type='submit']").textContent = "+ Agregar Movimiento";
+    } else {
+        // Crear nuevo movimiento
+        await crearUnNuevoMovimiento(movimiento);
+    }
+
+    // Limpiar formulario y recargar tabla
     formMovimientos.reset();
+    pintarMovimientos();
 });
 
-// pintarCategorias
+// Trae las categorías desde el servidor y las coloca en los select
 async function pintarCategorias() {
-    selectCategorias.innerHTML = "";
+    const response = await fetch(endpointCategories);
+    const categorias = await response.json();
 
-    let response = await fetch(endpointCategories);
-    let data = await response.json();
+    // Inicializar los select con opción por defecto
+    selectCategorias.innerHTML = `<option value="">-- Selecciona --</option>`;
+    filtroCategoria.innerHTML = `<option value="">Categoría</option>`;
 
-    if (data.length === 0) {
-        selectCategorias.innerHTML += `
-            <option disabled>Sin Categorias, por favor registre almenos una</option>
-        `;
-    }
-
-    data.forEach((categoria) => {
-        selectCategorias.innerHTML += `
-            <option value="${categoria.id}">${categoria.nombre}</option>
-        `;
+    // Agregar las opciones de categorías
+    categorias.forEach(cat => {
+        const option = `<option value="${cat.id}">${cat.nombre}</option>`;
+        selectCategorias.innerHTML += option;
+        filtroCategoria.innerHTML += option;
     });
 }
-//pintar los moviminetos en la tabla
-async function pintarMovimientos() {
-    let movimientos = await traerMovimientos();
 
+// Trae los movimientos y los muestra aplicando filtros
+async function pintarMovimientos() {
+    const response = await fetch(endpointMovimientos);
+    let movimientos = await response.json();
+
+    // Obtener todas las categorías para relacionar los IDs
+    const categorias = await (await fetch(endpointCategories)).json();
+
+    // Relacionar cada movimiento con su nombre de categoría
+    movimientos = movimientos.map(mov => {
+        const categoria = categorias.find(cat => cat.id === mov.categoryId);
+        return { ...mov, categoriaNombre: categoria ? categoria.nombre : "La categoría fue eliminada" };
+    });
+
+    // Obtener los valores de los filtros
+    const tipo = filtroTipo.value;
+    const categoriaId = filtroCategoria.value;
+    const fechaInicio = filtroFechaInicio.value;
+    const fechaFin = filtroFechaFin.value;
+
+    // Aplicar filtros al array
+    const filtrados = movimientos.filter(mov => {
+        if (tipo && mov.tipo !== tipo) return false;
+        if (categoriaId && mov.categoryId !== categoriaId) return false;
+        if (fechaInicio && mov.fecha < fechaInicio) return false;
+        if (fechaFin && mov.fecha > fechaFin) return false;
+        return true;
+    });
+
+    // Mostrar los movimientos filtrados en la tabla
     tbodyMovimientos.innerHTML = "";
 
-    for (const movimiento of movimientos) {
+    filtrados.forEach(mov => {
         tbodyMovimientos.innerHTML += `
         <tr>
-            <td>${movimiento.tipo}</td>
-            <td>${movimiento.descripcion}</td>
-            <td>${movimiento.importe}</td>
-            <td>${movimiento.fecha}</td>
-            <td>${movimiento.category === undefined ? "la categoria fue eliminadad" : movimiento.category.nombre
-            }
-            </td>
+            <td>${mov.tipo}</td>
+            <td>${mov.descripcion}</td>
+            <td>$${mov.importe}</td>
+            <td>${mov.fecha}</td>
+            <td>${mov.categoriaNombre}</td>
             <td>
-            <button class="btn-editar" data-id="${movimiento.id
-            }">Editar</button>
-            <button class="btn-eliminar" data-id="${movimiento.id
-            }">Eliminar</button>
+                <button class="btn-editar" data-id="${mov.id}">Editar</button>
+                <button class="btn-eliminar" data-id="${mov.id}">Eliminar</button>
             </td>
-        </tr>
-        `;
-    }
+        </tr>`;
+    });
 }
 
-// crear un nuevo movimiento
-async function crearUnNuevoMovimiento(newMovimiento) {
-    let response = await fetch(endpointMovimientos, {
+// Crea un nuevo movimiento
+async function crearUnNuevoMovimiento(mov) {
+    const response = await fetch(endpointMovimientos, {
         method: "POST",
-        headers: {
-            "content-type": "application/json",
-        },
-        body: JSON.stringify(newMovimiento),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(mov),
     });
 
     if (response.ok) {
-        alert("movimiento guardado con exito");
+        alert("Movimiento guardado con éxito");
     }
 
     pintarMovimientos();
 }
 
-// traer llamar a los movimiento de la base de datos
-async function traerMovimientos() {
-    let response = await fetch(`${endpointMovimientos}?_embed=category`);
-    let data = await response.json();
+// Manejar clicks en la tabla para editar o eliminar
+tbodyMovimientos.addEventListener("click", async (event) => {
+    const target = event.target;
 
-    return data;
+    if (target.classList.contains("btn-eliminar")) {
+        const id = target.dataset.id;
+        if (confirm("¿Eliminar este movimiento?")) {
+            await eliminarMovimiento(id);
+            pintarMovimientos();
+        }
+    }
+
+    if (target.classList.contains("btn-editar")) {
+        const id = target.dataset.id;
+        cargarMovimientoEnFormulario(id);
+    }
+});
+
+// Elimina un movimiento por ID
+async function eliminarMovimiento(id) {
+    await fetch(`${endpointMovimientos}/${id}`, { method: "DELETE" });
 }
+
+// Cargar datos al formulario para editar un movimiento existente
+async function cargarMovimientoEnFormulario(id) {
+    const response = await fetch(`${endpointMovimientos}/${id}`);
+    const mov = await response.json();
+
+    // Llenar el formulario con los datos
+    formMovimientos.tipo.value = mov.tipo;
+    formMovimientos.descripcion.value = mov.descripcion;
+    formMovimientos.importe.value = mov.importe;
+    formMovimientos.fecha.value = mov.fecha;
+    formMovimientos.categoria.value = mov.categoryId;
+
+    // Marcar que estamos editando
+    formMovimientos.setAttribute("data-edit-id", mov.id);
+    formMovimientos.querySelector("button[type='submit']").textContent = "Guardar Cambios";
+}
+
+// Botón para limpiar filtros y recargar movimientos sin filtro
+btnLimpiarFiltros.addEventListener("click", () => {
+    filtroTipo.value = "";
+    filtroCategoria.value = "";
+    filtroFechaInicio.value = "";
+    filtroFechaFin.value = "";
+    pintarMovimientos();
+});
+
+// Cada vez que cambia un filtro, se recargan los movimientos
+[filtroTipo, filtroCategoria, filtroFechaInicio, filtroFechaFin].forEach(input =>
+    input.addEventListener("change", pintarMovimientos)
+);

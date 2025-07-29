@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reportes</title>
     <link rel="stylesheet" href="../styles/reportes.css" />
-    <!-- <script type="module" src="../js/guardian.js"></script> -->
+    <script type="module" src="../js/guardian.js"></script>
 </head>
 
 <body>
@@ -21,32 +21,42 @@
         <!-- Resumen general -->
         <section class="resumen">
             <h2>Resumen General</h2>
-            <article class="resumen-grid">
-                <article id="categoria-vendida" class="reporte-box">
+            <article class="reportes-grid">
+                <article class="reporte-box">
                     <h3>🔝 Categoría más vendida</h3>
-                    <p>
+                    <p id="categoria-mas-vendida" >
                         <!-- ingresara la venta mas vendidas -->
                     </p>
                 </article>
-                <article id="categoria-mas-compras" class="reporte-box">
+                <article  class="reporte-box">
                     <h3>🔽 Categoría con más compras</h3>
-                    <p id="cat-mas-comprada">-</p>
+                    <p id="categoria-mas-compras">
+                        <!-- ingresara con mas compras  -->
+                    </p>
                 </article>
-                <article id="categoria-vendida" class="reporte-box">
+                <article  class="reporte-box">
                     <h3>📦 Producto más vendido</h3>
-                    <p id="prod-mas-vendido">-</p>
+                    <p id="producto-mas-vendido">
+                        <!-- ingresara mas vendido -->
+                    </p>
                 </article>
-                <article id="categoria-vendida" class="reporte-box">
+                <article  class="reporte-box">
                     <h3>🛒 Producto más comprado</h3>
-                    <p id="prod-mas-comprado">-</p>
+                    <p id="producto-comprado">
+                        <!-- ingresara lo mas comprado -->
+                    </p>
                 </article>
-                <article id="categoria-vendida" class="reporte-box">
+                <article  class="reporte-box">
                     <h3>📈 Mes con más ventas</h3>
-                    <p id="mes-mas-ventas">-</p>
+                    <p id="mas-ventas">
+                        <!-- ingresara mayor a mas ventas -->
+                    </p>
                 </article>
-                <article id="categoria-vendida" class="reporte-box">
+                <article class="reporte-box">
                     <h3>📉 Mes con más compras</h3>
-                    <p id="mes-mas-compras">-</p>
+                    <p id="mes-mas-compra" >
+                        <!-- ingresara con mas compras -->
+                    </p>
                 </article>
             </article>
         </section>
@@ -64,6 +74,7 @@
             </div>
         </section>
     </main>
+    <script src="../js/reportes.js"></script>
 </body>
 
 </html>
